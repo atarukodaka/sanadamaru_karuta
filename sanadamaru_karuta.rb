@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'romkan'
+require 'unf'
 require 'erb'
 
 def main
@@ -20,6 +21,7 @@ def main
 <table>
 <% ar.sort_by{|hash| hash[:text] }.each do |hash| %>
   <tr>
+    <td><%= hash[:text][0].to_nfd.split('').first %>
     <td><img src="<%=  hash[:img] %>" width=200>
     <td><%= hash[:text] %>
 <% end %>
