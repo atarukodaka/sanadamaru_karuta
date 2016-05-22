@@ -21,7 +21,7 @@ def main
 <table>
 <% ar.sort_by{|hash| hash[:text] }.each do |hash| %>
   <tr>
-    <td><%= hash[:text][0].to_nfd.split('').first %>
+    <td><span style="font-size: large; font-weight: bold;"><%= hash[:text][0].to_nfd.split('').first %></span>
     <td><a href="<%= hash[:img] %>"><img src="<%=  hash[:img] %>" width="200"></a>
     <td><%= hash[:text] %>
 <% end %>
