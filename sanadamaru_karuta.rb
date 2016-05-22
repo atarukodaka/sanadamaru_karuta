@@ -22,10 +22,14 @@ def main
 <% ar.sort_by{|hash| hash[:text] }.each do |hash| %>
   <tr>
     <td><%= hash[:text][0].to_nfd.split('').first %>
-    <td><img src="<%=  hash[:img] %>" width=200>
+    <td><a href="<%= hash[:img] %>"><img src="<%=  hash[:img] %>" width="200"></a>
     <td><%= hash[:text] %>
 <% end %>
 </table>
+
+<hr>
+Sanadamaru Karuta Builder
+
 EOS
 
   erb = ERB.new(layout)
@@ -33,6 +37,3 @@ EOS
 end
 
 main
-
-
-
