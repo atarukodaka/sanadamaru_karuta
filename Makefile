@@ -1,2 +1,2 @@
 all:
-	bundle exec ruby sanadamaru_karuta.rb > sanadamaru_karuta.html
+	bundle exec ruby sanadamaru_karuta.rb > index.html
