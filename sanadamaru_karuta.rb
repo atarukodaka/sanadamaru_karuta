@@ -16,7 +16,7 @@ def main
 
   ###
   layout = <<EOS
-<h1>sanadamaru karuta</h1>
+<h1>Sanadamaru Karuta</h1>
 
 <table>
 <% ar.sort_by{|hash| hash[:text] }.each do |hash| %>
