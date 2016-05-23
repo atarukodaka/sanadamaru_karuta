@@ -7,8 +7,6 @@ class SanadamaruKaruta
   def initialize
     @img_dir = "images"
     @layout_dir = "layouts"
-
-    @layout = ""
   end
 
   def read_images
