@@ -3,37 +3,35 @@ require 'romkan'
 require 'unf'
 require 'erb'
 
-def main
-  img_dir = "images"
+class SanadamaruKaruta
+  def initialize
+    @img_dir = "images"
+    @layout_dir = "layouts"
 
-  ar = []
-  files = Dir.glob(File.join(img_dir, "*"))
-  files.each do |path|
-    basename = File.basename(path, ".*")
-    text = basename.gsub("_", " ").to_kana
-    ar << {img: path, text: text}
+    @layout = ""
   end
 
-  ###
-  layout = <<EOS
-<h1>Sanadamaru Karuta</h1>
+  def read_images
+    ar = []
+    files = Dir.glob(File.join(@img_dir, "*"))
+    files.each do |path|
+      basename = File.basename(path, ".*")
+      text = basename.gsub("_", " ").to_kana
+      ar << {img: path, text: text}
+    end
+    return ar
+  end
 
-<table>
-<% ar.sort_by{|hash| hash[:text] }.each do |hash| %>
-  <tr>
-    <td><span style="font-size: large; font-weight: bold;"><%= hash[:text][0].to_nfd.split('').first %></span>
-    <td><a href="<%= hash[:img] %>"><img src="<%=  hash[:img] %>" width="200"></a>
-    <td><%= hash[:text] %>
-<% end %>
-</table>
+  def run
+    ar = read_images()
 
-<hr>
-Sanadamaru Karuta Builder
-
-EOS
-
-  erb = ERB.new(layout)
-  puts erb.result(binding)
+    layout_filename = File.join(@layout_dir, "layout.erb")
+    layout = File.read(layout_filename)
+    erb = ERB.new(layout)
+    puts erb.result(binding)
+  end
 end
 
-main
+################
+karuta = SanadamaruKaruta.new
+karuta.run
