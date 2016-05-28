@@ -2,7 +2,7 @@
 
 
 
-index.html: sanadamaru_karuta.rb
+html: sanadamaru_karuta.rb
 	bundle exec ruby sanadamaru_karuta.rb > index.html
 
 
