@@ -9,20 +9,20 @@ class SanadamaruKaruta
     @layout_dir = "layouts"
   end
 
-  def read_images
-    ar = []
+  def read_cards
+    cards = []
     files = Dir.glob(File.join(@img_dir, "*"))
     files.each do |path|
       basename = File.basename(path, ".*")
       text = basename.gsub("_", " ").to_kana
-      ar << {img: path, text: text}
+      cards << {img: path, text: text}
     end
-    return ar
+    return cards
   end
 
   def run
-    ar = read_images()
-
+    cards = read_cards()
+    
     layout_filename = File.join(@layout_dir, "layout.erb")
     layout = File.read(layout_filename)
     erb = ERB.new(layout)
